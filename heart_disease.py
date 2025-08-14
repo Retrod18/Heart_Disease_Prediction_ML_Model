@@ -19,6 +19,11 @@ st.markdown(
         color: #1a1a1a; /* Darker text color for better visibility */
     }
 
+    /* Ensure the main app background is light */
+    .stApp {
+        background: linear-gradient(135deg, #f0f2f6 0%, #e0e5ec 100%); /* Soft, light gradient for the entire app */
+    }
+
     /* Main container styling */
     .st-emotion-cache-z5fcl4 { /* Targets the main content area */
         background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%); /* Soft blue-white gradient */
@@ -135,7 +140,7 @@ st.markdown(
     .st-emotion-cache-10qg059 {
         font-size: 1.1em;
         line-height: 1.6;
-        color: #555;
+        color: #333; /* Darker text for readability */
     }
 
     /* Image styling within the main content */
