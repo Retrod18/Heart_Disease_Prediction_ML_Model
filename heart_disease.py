@@ -9,28 +9,15 @@ import time
 st.set_page_config(
     layout="wide",
     page_title="Heart Health Predictor 💖",
-    # Explicitly set the theme to light
-    initial_sidebar_state="expanded", # Keep sidebar expanded by default
+    initial_sidebar_state="expanded",
     menu_items={
         'Get help': 'https://www.streamlit.io/help',
         'Report a bug': "https://github.com/streamlit/streamlit/issues",
-        'About': "# This is a header. This is an *extremely* cool app!"
+        'About': "# Heart Health Predictor"
     }
 )
 
-# Force Streamlit to use the light theme if it's not already
-st.markdown(
-    """
-    <style>
-    .stApp {
-        background-color: #f0f2f6; /* Fallback for the very base */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# Apply custom CSS for a unique and beautiful look
+# --- Custom CSS for a unique and beautiful look ---
 st.markdown(
     """
     <style>
@@ -41,14 +28,14 @@ st.markdown(
         color: #1a1a1a; /* Darker text color for better visibility */
     }
 
-    /* Ensure the main app background is light */
+    /* Ensure the entire app background is light */
     .stApp {
-        background: linear-gradient(135deg, #f0f2f6 0%, #e0e5ec 100%); /* Soft, light gradient for the entire app */
+        background: linear-gradient(135deg, #f0f2f6 0%, #e0e5ec 100%) !important; /* Force light gradient */
     }
 
-    /* Main container styling */
+    /* Main content area styling */
     .st-emotion-cache-z5fcl4 { /* Targets the main content area */
-        background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%); /* Soft blue-white gradient */
+        background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%) !important; /* Soft blue-white gradient */
         border-radius: 1.5rem; /* More rounded corners */
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* Softer, larger shadow */
         padding: 3rem; /* Increased padding */
@@ -77,40 +64,67 @@ st.markdown(
         font-weight: 600;
     }
 
-    /* Styling for sidebar */
-    /* This targets the actual sidebar element */
-    .st-emotion-cache-1jmve56 { /* This class might change, but it's common for the sidebar */
-        background: linear-gradient(180deg, #e0f2f7 0%, #c8e6f1 100%); /* Light blue gradient for sidebar */
-        border-right: 2px solid #a7d9ed; /* Subtle border on the right */
-        box-shadow: 5px 0 15px rgba(0,0,0,0.05); /* Shadow for depth */
+    /* --- Sidebar Styling --- */
+    /* Target the main sidebar container */
+    .st-emotion-cache-1jmve56 { /* Common class for the sidebar container */
+        background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%) !important; /* Dark blue/grey gradient */
+        border-right: 2px solid #1a252f; /* Darker border */
+        box-shadow: 5px 0 20px rgba(0,0,0,0.2); /* More prominent shadow */
         padding-top: 2rem;
-        color: #1a1a1a; /* Ensure sidebar text is dark and visible */
+        color: #ecf0f1 !important; /* Light text color for sidebar */
     }
-    /* Also target the sidebar content wrapper for background and text color */
-    .st-emotion-cache-10o4u2p { /* This targets the actual content wrapper inside the sidebar */
-        background: linear-gradient(180deg, #e0f2f7 0%, #c8e6f1 100%); /* Light blue gradient for sidebar */
-        color: #1a1a1a; /* Ensure sidebar text is dark and visible */
+    /* Target the sidebar content wrapper (important for text visibility) */
+    .st-emotion-cache-10o4u2p { /* Common class for sidebar content wrapper */
+        background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%) !important; /* Dark blue/grey gradient */
+        color: #ecf0f1 !important; /* Light text color for sidebar content */
     }
 
-
-    /* Styling for sidebar headers */
+    /* Sidebar header styling */
     .st-emotion-cache-1c7y2kd { /* Targets h2 in sidebar */
-        color: #0D47A1; /* Darker blue for sidebar header */
+        color: #1abc9c !important; /* Bright teal for sidebar header */
         font-size: 2em; /* Larger sidebar header */
         font-weight: 700;
         margin-bottom: 1.5em;
         text-align: center;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        text-shadow: 1px 1px 3px rgba(0,255,255,0.2);
     }
 
-    /* Styling for sidebar image container */
+    /* Sidebar image container */
     .st-emotion-cache-1r6y40z { /* Targets image container in sidebar */
         border-radius: 1.2rem; /* Rounded corners */
         overflow: hidden;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.18); /* Soft shadow */
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* Darker shadow for image */
         margin-bottom: 2.5em;
-        border: 2px solid #CFD8DC; /* Light grey border */
+        border: 2px solid #5a7d9a; /* Complementary border */
     }
+
+    /* Sidebar expander styling */
+    .st-emotion-cache-p5m6cs { /* Targets expander container */
+        background-color: #3f546a !important; /* Slightly lighter dark background */
+        border-radius: 0.8rem;
+        border: 1px solid #4a6078 !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        margin-bottom: 1em;
+        padding: 0.5em 1em;
+    }
+    .st-emotion-cache-p5m6cs p { /* Text inside expander */
+        color: #ecf0f1 !important;
+        font-weight: 500;
+    }
+    .st-emotion-cache-p5m6cs div[data-testid="stExpanderToggleIcon"] { /* Expander arrow icon */
+        color: #1abc9c !important;
+    }
+    .st-emotion-cache-p5m6cs div[data-testid="stExpanderDetails"] { /* Content inside expander details */
+        color: #ecf0f1 !important;
+    }
+    .st-emotion-cache-p5m6cs button { /* Expander header button */
+        color: #ecf0f1 !important;
+        font-weight: 600;
+        font-size: 1.1em;
+    }
+
+    /* --- End Sidebar Styling --- */
+
 
     /* Styling for the prediction button */
     .stButton>button {
@@ -263,9 +277,24 @@ except Exception as e:
     st.error(f"Error loading dataset from URL: {e}")
     st.stop()
 
-# Sidebar for patient feature selection
+# --- Sidebar Content ---
 st.sidebar.header('Patient Features')
 st.sidebar.image('https://upload.wikimedia.org/wikipedia/ps/1/13/HeartBeat.gif', caption='Heartbeat Monitor', use_container_width=True)
+
+# Dummy Quick Stats section
+st.sidebar.markdown("---")
+st.sidebar.subheader("Quick Stats (Dummy Data)")
+with st.sidebar.expander("Patient Overview"):
+    st.write("Total Patients: **1,250**")
+    st.write("Avg. Age: **54.5 years**")
+    st.write("Gender Ratio (M/F): **65% / 35%**")
+
+with st.sidebar.expander("Risk Factors"):
+    st.write("Avg. Cholesterol: **245 mg/dL**")
+    st.write("Avg. Blood Pressure: **128 mmHg**")
+    st.write("Patients with Angina: **30%**")
+
+st.sidebar.markdown("---") # Separator before actual inputs
 
 # Dictionary to store input values
 input_values = {}
@@ -288,8 +317,8 @@ features_config = {
 }
 
 # Display input widgets in two columns in the sidebar for a compact layout
-col1, col2 = st.columns(2)
-sidebar_cols = [col1, col2]
+col1_sb, col2_sb = st.sidebar.columns(2) # Use st.sidebar.columns
+sidebar_cols = [col1_sb, col2_sb]
 current_col_idx = 0
 
 for feature, config in features_config.items():
