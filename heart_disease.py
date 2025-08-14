@@ -6,65 +6,120 @@ import random
 import time
 
 # Set page configuration for a wider layout and custom title
-st.set_page_config(layout="centered", page_title="Heart Disease Predictor")
+st.set_page_config(layout="centered", page_title="Heart Health Predictor 💖")
 
-# Apply custom CSS for a unique look
+# Apply custom CSS for a unique and beautiful look
 st.markdown(
     """
     <style>
-    .main-header {
-        font-size: 3em;
-        color: #E91E63; /* A vibrant red/pink for the main title */
-        text-align: center;
-        font-weight: bold;
-        margin-bottom: 20px;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    /* General body styling */
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #f0f2f6 0%, #e0e5ec 100%); /* Soft, light gradient */
     }
+
+    /* Main container styling */
+    .st-emotion-cache-z5fcl4 { /* This targets the main content area */
+        background-color: #ffffff;
+        border-radius: 1.5rem; /* More rounded corners */
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Softer, larger shadow */
+        padding: 2.5rem; /* Increased padding */
+        border: 1px solid #e2e8f0; /* Subtle border */
+    }
+
+    /* Main header styling */
+    .main-header {
+        font-size: 3.5em; /* Larger font size */
+        color: #E91E63; /* Vibrant pink/red */
+        text-align: center;
+        font-weight: 800; /* Extra bold */
+        margin-bottom: 0.5em;
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.15); /* More pronounced shadow */
+        letter-spacing: -0.03em; /* Tighter letter spacing */
+    }
+
+    /* Subheader styling */
     .subheader {
-        font-size: 1.2em;
+        font-size: 1.4em; /* Slightly larger */
         color: #4CAF50; /* Green for health-related subheader */
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 2.5em;
+        font-weight: 500;
     }
+
     /* Styling for sidebar headers */
-    .st-emotion-cache-1c7y2kd {
+    .st-emotion-cache-1c7y2kd { /* Targets h2 in sidebar */
         color: #1976D2; /* Blue for sidebar header */
-        font-size: 1.5em;
-        font-weight: bold;
+        font-size: 1.8em; /* Larger sidebar header */
+        font-weight: 700;
+        margin-bottom: 1em;
+        text-align: center;
     }
+
     /* Styling for sidebar image container */
-    .st-emotion-cache-1r6y40z {
-        border-radius: 10px;
+    .st-emotion-cache-1r6y40z { /* Targets image container in sidebar */
+        border-radius: 1rem; /* Rounded corners */
         overflow: hidden;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Soft shadow */
+        margin-bottom: 2em;
     }
+
     /* Styling for the prediction button */
     .stButton>button {
         background-color: #4CAF50; /* Green button */
         color: white;
         font-weight: bold;
-        padding: 10px 20px;
-        border-radius: 8px;
+        padding: 0.8em 1.5em; /* Adjusted padding */
+        border-radius: 0.75rem; /* More rounded */
         border: none;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3); /* Green shadow */
+        font-size: 1.1em;
+        width: 100%; /* Make button full width */
     }
     .stButton>button:hover {
-        background-color: #388E3C;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        background-color: #388E3C; /* Darker green on hover */
+        transform: translateY(-3px); /* Lift effect */
+        box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4); /* Larger shadow on hover */
     }
+
     /* Styling for success and warning messages */
     .stSuccess, .stWarning {
-        border-radius: 10px;
-        padding: 15px;
-        font-size: 1.1em;
-        font-weight: bold;
+        border-radius: 1rem; /* Rounded corners */
+        padding: 1.5em; /* Increased padding */
+        font-size: 1.2em;
+        font-weight: 600; /* Semi-bold */
         text-align: center;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        margin-top: 1.5em; /* Space above messages */
+    }
+    .stSuccess {
+        background-color: #e8f5e9; /* Light green background */
+        color: #2e7d32; /* Dark green text */
+        border: 1px solid #a5d6a7;
+    }
+    .stWarning {
+        background-color: #ffebee; /* Light red background */
+        color: #c62828; /* Dark red text */
+        border: 1px solid #ef9a9a;
+    }
+
+    /* Styling for input labels */
+    .st-emotion-cache-vk330f { /* Targets labels for input widgets */
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 0.5em;
+    }
+
+    /* Styling for selectboxes and radio buttons */
+    .st-emotion-cache-1kyx5e9, .st-emotion-cache-1v0mbdj { /* Targets selectbox and radio button containers */
+        background-color: #f8f9fa;
+        border-radius: 0.5rem;
+        padding: 0.5em;
+        border: 1px solid #ddd;
     }
     </style>
     """,
@@ -111,7 +166,8 @@ except Exception as e:
 
 # Sidebar for patient feature selection
 st.sidebar.header('Patient Features')
-st.sidebar.image('https://upload.wikimedia.org/wikipedia/ps/1/13/HeartBeat.gif', caption='Heartbeat Monitor', use_column_width=True)
+# Updated image parameter
+st.sidebar.image('https://upload.wikimedia.org/wikipedia/ps/1/13/HeartBeat.gif', caption='Heartbeat Monitor', use_container_width=True)
 
 # Dictionary to store input values
 input_values = {}
