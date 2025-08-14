@@ -195,6 +195,17 @@ except Exception as e:
 url = '''https://github.com/ankitmisk/Heart_Disease_Prediction_ML_Model/blob/main/heart.csv?raw=true'''
 try:
     df = pd.read_csv(url)
+    # Explicitly convert relevant columns to numeric to prevent TypeError
+    numeric_cols = [
+        'age', 'trestbps', 'chol', 'thalach', 'oldpeak', 'ca'
+    ]
+    for col in numeric_cols:
+        df[col] = pd.to_numeric(df[col], errors='coerce')
+        # Fill any NaN values that might result from coercion (e.g., if there were non-numeric strings)
+        # For this specific dataset, original EDA showed no NaNs, but this is good practice.
+        if df[col].isnull().any():
+            df[col].fillna(df[col].mean(), inplace=True)
+
 except Exception as e:
     st.error(f"Error loading dataset from URL: {e}")
     st.stop()
