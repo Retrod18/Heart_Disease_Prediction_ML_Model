@@ -6,7 +6,29 @@ import random
 import time
 
 # Set page configuration for a wider layout and custom title
-st.set_page_config(layout="wide", page_title="Heart Health Predictor 💖") # Changed to wide layout
+st.set_page_config(
+    layout="wide",
+    page_title="Heart Health Predictor 💖",
+    # Explicitly set the theme to light
+    initial_sidebar_state="expanded", # Keep sidebar expanded by default
+    menu_items={
+        'Get help': 'https://www.streamlit.io/help',
+        'Report a bug': "https://github.com/streamlit/streamlit/issues",
+        'About': "# This is a header. This is an *extremely* cool app!"
+    }
+)
+
+# Force Streamlit to use the light theme if it's not already
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #f0f2f6; /* Fallback for the very base */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Apply custom CSS for a unique and beautiful look
 st.markdown(
@@ -56,12 +78,20 @@ st.markdown(
     }
 
     /* Styling for sidebar */
-    .st-emotion-cache-1jmve56 { /* Targets the sidebar container */
+    /* This targets the actual sidebar element */
+    .st-emotion-cache-1jmve56 { /* This class might change, but it's common for the sidebar */
         background: linear-gradient(180deg, #e0f2f7 0%, #c8e6f1 100%); /* Light blue gradient for sidebar */
         border-right: 2px solid #a7d9ed; /* Subtle border on the right */
         box-shadow: 5px 0 15px rgba(0,0,0,0.05); /* Shadow for depth */
         padding-top: 2rem;
+        color: #1a1a1a; /* Ensure sidebar text is dark and visible */
     }
+    /* Also target the sidebar content wrapper for background and text color */
+    .st-emotion-cache-10o4u2p { /* This targets the actual content wrapper inside the sidebar */
+        background: linear-gradient(180deg, #e0f2f7 0%, #c8e6f1 100%); /* Light blue gradient for sidebar */
+        color: #1a1a1a; /* Ensure sidebar text is dark and visible */
+    }
+
 
     /* Styling for sidebar headers */
     .st-emotion-cache-1c7y2kd { /* Targets h2 in sidebar */
