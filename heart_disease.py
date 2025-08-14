@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -8,7 +9,7 @@ import time
 # Set page configuration for a wider layout and custom title
 st.set_page_config(
     layout="wide",
-    page_title="Heart Health Predictor �",
+    page_title="Heart Health Predictor 💖",
     initial_sidebar_state="expanded",
     menu_items={
         'Get help': 'https://www.streamlit.io/help',
@@ -393,4 +394,3 @@ if st.button('Predict Heart Disease Likelihood'):
 # Separator and footer
 st.markdown("---")
 st.markdown("Developed by **Dhruv Sharma**")
-�
