@@ -67,15 +67,16 @@ st.markdown(
     /* --- Sidebar Styling --- */
     /* Target the main sidebar container */
     .st-emotion-cache-1jmve56 { /* Common class for the sidebar container */
-        background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%) !important; /* Dark blue/grey gradient */
+        background: linear-gradient(180deg, #34495e 0%, #2c3e50 100%) !important; /* Dark blue/grey gradient */
         border-right: 2px solid #1a252f; /* Darker border */
         box-shadow: 5px 0 20px rgba(0,0,0,0.2); /* More prominent shadow */
         padding-top: 2rem;
-        color: #ecf0f1 !important; /* Light text color for sidebar */
+        /* Ensure all text within the sidebar is light and visible */
+        color: #ecf0f1 !important;
     }
     /* Target the sidebar content wrapper (important for text visibility) */
     .st-emotion-cache-10o4u2p { /* Common class for sidebar content wrapper */
-        background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%) !important; /* Dark blue/grey gradient */
+        background: linear-gradient(180deg, #34495e 0%, #2c3e50 100%) !important; /* Dark blue/grey gradient */
         color: #ecf0f1 !important; /* Light text color for sidebar content */
     }
 
@@ -108,20 +109,43 @@ st.markdown(
         padding: 0.5em 1em;
     }
     .st-emotion-cache-p5m6cs p { /* Text inside expander */
-        color: #ecf0f1 !important;
+        color: #ecf0f1 !important; /* Ensure expander text is light */
         font-weight: 500;
     }
     .st-emotion-cache-p5m6cs div[data-testid="stExpanderToggleIcon"] { /* Expander arrow icon */
-        color: #1abc9c !important;
+        color: #1abc9c !important; /* Ensure expander icon is bright */
     }
     .st-emotion-cache-p5m6cs div[data-testid="stExpanderDetails"] { /* Content inside expander details */
-        color: #ecf0f1 !important;
+        color: #ecf0f1 !important; /* Ensure expander details text is light */
     }
     .st-emotion-cache-p5m6cs button { /* Expander header button */
-        color: #ecf0f1 !important;
+        color: #ecf0f1 !important; /* Ensure expander button text is light */
         font-weight: 600;
         font-size: 1.1em;
     }
+
+    /* Styling for sidebar input labels */
+    /* This targets the labels specifically within the sidebar */
+    .st-emotion-cache-vk330f label {
+        color: #ecf0f1 !important; /* Force light color for labels */
+    }
+    /* Styling for sidebar input elements (sliders, selectboxes, radio buttons) */
+    .st-emotion-cache-1kyx5e9, .st-emotion-cache-1v0mbdj, .st-emotion-cache-1q1n004 {
+        background-color: #4a6078 !important; /* Darker background for inputs */
+        border-radius: 0.8rem;
+        padding: 0.7em;
+        border: 1px solid #5a7d9a !important;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Inner shadow for depth */
+        color: #ecf0f1 !important; /* Ensure input text is light */
+    }
+    /* For slider numbers */
+    .st-emotion-cache-1q1n004 div[data-testid="stSlider"] div[data-baseweb="slider"] div[data-testid="stTickBar"] div {
+        color: #ecf0f1 !important; /* Make slider tick numbers visible */
+    }
+    .st-emotion-cache-1q1n004 div[data-testid="stSlider"] div[data-baseweb="slider"] div[data-testid="stTickBar"] div[data-testid="stTickBarValue"] {
+        color: #ecf0f1 !important; /* Make slider value numbers visible */
+    }
+
 
     /* --- End Sidebar Styling --- */
 
@@ -172,6 +196,7 @@ st.markdown(
     }
 
     /* Styling for input labels */
+    /* This targets labels outside the sidebar */
     .st-emotion-cache-vk330f { /* Targets labels for input widgets */
         font-weight: 600;
         color: #444;
