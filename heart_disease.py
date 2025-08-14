@@ -127,6 +127,8 @@ st.markdown(
     /* Styling for sidebar input labels */
     .st-emotion-cache-vk330f label {
         color: #1a1a1a !important; /* Force dark color for labels */
+        margin-bottom: 0.2em; /* Reduce space below label */
+        padding-top: 1em; /* Add padding above label for spacing */
     }
     /* Styling for sidebar input elements (sliders, selectboxes, radio buttons) */
     .st-emotion-cache-1kyx5e9, .st-emotion-cache-1v0mbdj, .st-emotion-cache-1q1n004 {
@@ -136,6 +138,7 @@ st.markdown(
         border: 1px solid #d0d0d0 !important;
         box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Inner shadow for depth */
         color: #1a1a1a !important; /* Ensure input text is dark */
+        margin-bottom: 1em; /* Add space below input field */
     }
     /* For slider numbers */
     .st-emotion-cache-1q1n004 div[data-testid="stSlider"] div[data-baseweb="slider"] div[data-testid="stTickBar"] div {
@@ -341,12 +344,9 @@ features_config = {
 }
 
 # Display input widgets in two columns in the sidebar for a compact layout
-col1_sb, col2_sb = st.sidebar.columns(2) # Use st.sidebar.columns
-sidebar_cols = [col1_sb, col2_sb]
-current_col_idx = 0
-
+# I will put each input in its own st.sidebar.container() for better spacing control
 for feature, config in features_config.items():
-    with sidebar_cols[current_col_idx]:
+    with st.sidebar.container(): # Each input gets its own container for more vertical space
         label = config.get('label', feature.replace("_", " ").title())
         if config['type'] == 'slider':
             min_val = float(df[feature].min()) if 'min' not in config else float(config['min'])
@@ -372,7 +372,7 @@ for feature, config in features_config.items():
                 format_func=lambda x: config['options'][x],
                 index=list(config['options'].keys()).index(config['default'])
             )
-    current_col_idx = (current_col_idx + 1) % len(sidebar_cols)
+    st.sidebar.markdown("---") # Add a separator after each input for clear distinction
 
 # Convert input values to a numpy array for prediction
 final_input_array = np.array([list(input_values.values())])
