@@ -144,6 +144,9 @@ st.markdown(
         box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         margin-bottom: 2em;
         border: 1px solid #e2e8f0;
+        width: 100%; /* Ensure image takes full width of its container */
+        height: auto; /* Maintain aspect ratio */
+        display: block; /* Remove extra space below image */
     }
 
     /* Footer styling */
@@ -162,8 +165,14 @@ st.markdown(
 st.markdown('<p class="main-header">❤️ Heart Disease Prediction</p>', unsafe_allow_html=True)
 st.markdown('<p class="subheader">Leveraging Machine Learning for Proactive Health Insights</p>', unsafe_allow_html=True)
 
-# Main project image
-st.image('https://itdesigners.org/wp-content/uploads/2024/02/heart-1024x576.jpg', caption='Predicting Heart Health', use_container_width=True, classes="main-image")
+# Main project image - now wrapped in markdown to apply custom class
+st.markdown(
+    f'<div class="main-image-container">'
+    f'<img src="https://itdesigners.org/wp-content/uploads/2024/02/heart-1024x576.jpg" class="main-image" alt="Predicting Heart Health">'
+    f'<p style="text-align: center; color: #777; font-size: 0.9em; margin-top: 0.5em;">Predicting Heart Health</p>'
+    f'</div>',
+    unsafe_allow_html=True
+)
 
 # Project description and algorithms used
 st.write("""
