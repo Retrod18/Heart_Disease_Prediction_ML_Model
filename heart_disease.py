@@ -16,7 +16,7 @@ st.markdown(
 
     html, body, [class*="st-emotion-cache"] {
         font-family: 'Inter', sans-serif;
-        color: #333;
+        color: #1a1a1a; /* Darker text color for better visibility */
     }
 
     /* Main container styling */
@@ -44,7 +44,7 @@ st.markdown(
     /* Subheader styling */
     .subheader {
         font-size: 1.6em; /* Larger subheader */
-        color: #5C6BC0; /* Muted blue for subheader */
+        color: #4A55A2; /* Darker muted blue for subheader */
         text-align: center;
         margin-bottom: 2.5em;
         font-weight: 600;
