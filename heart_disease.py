@@ -8,7 +8,7 @@ import time
 # Set page configuration for a wider layout and custom title
 st.set_page_config(
     layout="wide",
-    page_title="Heart Health Predictor 💖",
+    page_title="Heart Health Predictor �",
     initial_sidebar_state="expanded",
     menu_items={
         'Get help': 'https://www.streamlit.io/help',
@@ -66,18 +66,16 @@ st.markdown(
 
     /* --- Sidebar Styling --- */
     /* Target the main sidebar container */
-    .st-emotion-cache-1jmve56 { /* Common class for the sidebar container */
-        background: linear-gradient(180deg, #34495e 0%, #2c3e50 100%) !important; /* Dark blue/grey gradient */
+    section[data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%) !important; /* Dark blue/grey gradient */
         border-right: 2px solid #1a252f; /* Darker border */
         box-shadow: 5px 0 20px rgba(0,0,0,0.2); /* More prominent shadow */
         padding-top: 2rem;
-        /* Ensure all text within the sidebar is light and visible */
-        color: #ecf0f1 !important;
     }
-    /* Target the sidebar content wrapper (important for text visibility) */
-    .st-emotion-cache-10o4u2p { /* Common class for sidebar content wrapper */
-        background: linear-gradient(180deg, #34495e 0%, #2c3e50 100%) !important; /* Dark blue/grey gradient */
-        color: #ecf0f1 !important; /* Light text color for sidebar content */
+    /* Target the sidebar content wrapper for all text and elements */
+    .st-emotion-cache-10o4u2p, .st-emotion-cache-10o4u2p * { /* Select all children too */
+        color: #ecf0f1 !important; /* Light text color for all sidebar content */
+        background-color: transparent !important; /* Ensure no conflicting backgrounds */
     }
 
     /* Sidebar header styling */
@@ -125,7 +123,6 @@ st.markdown(
     }
 
     /* Styling for sidebar input labels */
-    /* This targets the labels specifically within the sidebar */
     .st-emotion-cache-vk330f label {
         color: #ecf0f1 !important; /* Force light color for labels */
     }
@@ -396,3 +393,4 @@ if st.button('Predict Heart Disease Likelihood'):
 # Separator and footer
 st.markdown("---")
 st.markdown("Developed by **Dhruv Sharma**")
+�
