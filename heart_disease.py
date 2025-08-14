@@ -55,6 +55,14 @@ st.markdown(
         font-weight: 600;
     }
 
+    /* Styling for sidebar */
+    .st-emotion-cache-1jmve56 { /* Targets the sidebar container */
+        background: linear-gradient(180deg, #e0f2f7 0%, #c8e6f1 100%); /* Light blue gradient for sidebar */
+        border-right: 2px solid #a7d9ed; /* Subtle border on the right */
+        box-shadow: 5px 0 15px rgba(0,0,0,0.05); /* Shadow for depth */
+        padding-top: 2rem;
+    }
+
     /* Styling for sidebar headers */
     .st-emotion-cache-1c7y2kd { /* Targets h2 in sidebar */
         color: #0D47A1; /* Darker blue for sidebar header */
@@ -157,8 +165,9 @@ st.markdown(
     /* Footer styling */
     .st-emotion-cache-ch5fnp { /* Targets markdown for footer */
         text-align: center;
-        color: #777;
-        font-size: 0.9em;
+        color: #444; /* Darker color for visibility */
+        font-size: 1em; /* Slightly larger font size */
+        font-weight: 500; /* Medium weight */
         margin-top: 3em;
     }
     </style>
@@ -302,4 +311,4 @@ if st.button('Predict Heart Disease Likelihood'):
 
 # Separator and footer
 st.markdown("---")
-st.markdown("Developed with ❤️ by **Dhruv Sharma**")
+st.markdown("Developed by **Dhruv Sharma**")
