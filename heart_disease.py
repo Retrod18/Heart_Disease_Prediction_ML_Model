@@ -23,18 +23,19 @@ st.markdown(
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
+    /* --- Base Styles --- */
     html, body, [class*="st-emotion-cache"] {
         font-family: 'Inter', sans-serif;
     }
 
-    /* --- General App Styling --- */
+    /* --- App Layout & Backgrounds (High Contrast) --- */
     .stApp {
-        background: linear-gradient(135deg, #f0f2f6 0%, #e0e5ec 100%) !important;
+        background-color: #f0f2f6 !important; /* Solid light grey background */
     }
 
     /* Main content area styling */
     .main-content {
-        background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%) !important;
+        background-color: #ffffff !important; /* Solid white background for max contrast */
         border-radius: 1.5rem;
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         padding: 3rem;
@@ -43,96 +44,47 @@ st.markdown(
         margin-bottom: 2rem;
     }
 
-    /* --- FINAL FIX FOR MAIN CONTENT TEXT VISIBILITY --- */
-    /* This universal selector targets ALL elements inside the main-content div */
-    .main-content * {
-        color: #1a1a1a !important; /* A very dark grey for maximum readability */
-    }
-    /* --- END OF MAIN CONTENT FIX --- */
-
-
-    /* Main header styling */
-    .main-header {
-        font-size: 3.8em;
-        color: #D32F2F !important;
-        text-align: center;
-        font-weight: 800;
-        margin-bottom: 0.2em;
-        text-shadow: 4px 4px 8px rgba(0,0,0,0.18);
-        letter-spacing: -0.04em;
-    }
-
-    /* Subheader styling */
-    .subheader {
-        font-size: 1.6em;
-        color: #4A55A2 !important;
-        text-align: center;
-        margin-bottom: 2.5em;
-        font-weight: 600;
-    }
-
-    /* --- Sidebar Styling --- */
+    /* Sidebar styling */
     section[data-testid="stSidebar"] {
-        background: #ffffff !important;
+        background: #ffffff !important; /* Solid white sidebar */
         border-right: 1px solid #e0e0e0;
         box-shadow: 5px 0 15px rgba(0,0,0,0.08);
         padding-top: 2rem;
     }
 
-    /* Universal rule to make ALL text inside the sidebar dark and readable */
-    section[data-testid="stSidebar"] * {
-        color: #1a1a1a !important;
+    /* --- UNIVERSAL TEXT VISIBILITY FIX --- */
+    /* Force all text to be dark and readable */
+    .main-content *, section[data-testid="stSidebar"] * {
+        color: #1f2937 !important; 
     }
     
-    /* --- DEFINITIVE FIX FOR DROPDOWN VISIBILITY --- */
-    /* Target the entire popover container for selectboxes */
-    div[data-baseweb="popover"] {
-        background-color: #ffffff !important; /* Force a light background on the dropdown box */
-        border: 1px solid #d0d0d0 !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    /* --- Headers --- */
+    .main-header {
+        font-size: 3.8em;
+        color: #D32F2F !important;
+        text-align: center;
+        font-weight: 800;
     }
-
-    /* Target the list items within the popover */
-    div[data-baseweb="popover"] ul li {
-        color: #1a1a1a !important; /* Ensure text in dropdown is dark */
-        background-color: #ffffff !important; /* Ensure each item has a light background */
+    .subheader {
+        font-size: 1.6em;
+        color: #4A55A2 !important;
+        text-align: center;
+        font-weight: 600;
     }
-
-    /* Style for hovering over dropdown options */
-    div[data-baseweb="popover"] ul li:hover {
-        background-color: #f0f2f6 !important; /* Light grey hover effect */
-    }
-    /* --- END OF DROPDOWN FIX --- */
-
-
-    /* Sidebar header styling */
     section[data-testid="stSidebar"] h2 {
         color: #0D47A1 !important;
         font-size: 2em;
         font-weight: 700;
-        margin-bottom: 1.5em;
-        text-align: center;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
     }
 
-    /* Sidebar image container */
-    section[data-testid="stSidebar"] .stImage {
-        border-radius: 1.2rem;
-        overflow: hidden;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-        margin-bottom: 2.5em;
-        border: 2px solid #CFD8DC;
+    /* --- Sidebar Widgets --- */
+    div[data-baseweb="popover"] ul li {
+        color: #1f2937 !important;
+        background-color: #ffffff !important;
     }
-
-    /* Sidebar expander styling */
-    section[data-testid="stSidebar"] .stExpander {
-        background-color: #f8f8f8 !important;
-        border-radius: 0.8rem;
-        border: 1px solid #e0e0e0 !important;
-        margin-bottom: 1em;
+    div[data-baseweb="popover"] ul li:hover {
+        background-color: #f0f2f6 !important;
     }
-    
-    /* Styling for sidebar input elements (sliders, selectboxes, radio buttons) */
     section[data-testid="stSidebar"] .stSlider, 
     section[data-testid="stSidebar"] .stSelectbox, 
     section[data-testid="stSidebar"] .stRadio {
@@ -140,53 +92,22 @@ st.markdown(
         border-radius: 0.8rem;
         padding: 0.7em;
         border: 1px solid #d0d0d0 !important;
-        box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-        margin-bottom: 1em;
     }
 
-    /* --- End Sidebar Styling --- */
-
-    /* Styling for the prediction button */
+    /* --- Prediction Button --- */
     .stButton>button {
         background: linear-gradient(45deg, #4CAF50 0%, #66BB6A 100%);
-        color: #FFFFFF !important; /* Force pure white text for high contrast */
+        color: #FFFFFF !important; /* Force pure white text */
         font-weight: bold;
         padding: 1em 2em;
         border-radius: 1rem;
         border: none;
-        transition: all 0.3s ease;
         box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
         font-size: 1.2em;
-        width: 100%;
-        letter-spacing: 0.05em;
     }
     .stButton>button:hover {
         background: linear-gradient(45deg, #388E3C 0%, #4CAF50 100%);
         transform: translateY(-4px);
-        box-shadow: 0 12px 30px rgba(76, 175, 80, 0.5);
-    }
-
-    /* Styling for success and warning messages */
-    .stAlert {
-        border-radius: 1.2rem;
-        padding: 1.8em;
-        font-size: 1.3em;
-        font-weight: 700;
-        text-align: center;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        margin-top: 2em;
-        border-left: 8px solid;
-    }
-
-    /* Image styling within the main content */
-    .main-image {
-        border-radius: 1.5rem;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        margin-bottom: 2em;
-        border: 1px solid #e2e8f0;
-        width: 100%;
-        height: auto;
-        display: block;
     }
     </style>
     """,
@@ -206,7 +127,6 @@ with st.container():
              caption="Predicting Heart Health", 
              use_container_width=True)
     
-    # Assigning the long description to a variable to prevent TokenError
     description = """
     Heart disease prevention is critical, and data-driven prediction systems can significantly aid in early diagnosis and treatment. Machine Learning offers accurate prediction capabilities, enhancing healthcare outcomes. This project analyzes a heart disease dataset with appropriate preprocessing. Multiple classification algorithms were implemented in Python using Scikit-learn and Keras to predict the presence of heart disease.
 
@@ -259,7 +179,6 @@ def load_dataframe():
 model = load_model()
 df = load_dataframe()
 
-# Stop execution if model or data failed to load
 if model is None or df is None:
     st.stop()
 
@@ -268,7 +187,6 @@ if model is None or df is None:
 st.sidebar.header('Patient Features')
 st.sidebar.image('https://upload.wikimedia.org/wikipedia/ps/1/13/HeartBeat.gif', caption='Heartbeat Monitor', use_container_width=True)
 
-# Dummy Quick Stats section
 with st.sidebar.expander("Patient Overview (Dummy Data)"):
     st.write("Total Patients: **1,250**")
     st.write("Avg. Age: **54.5 years**")
@@ -284,7 +202,6 @@ st.sidebar.markdown("---")
 # --- User Inputs ---
 input_values = {}
 
-# Configuration for each feature's input widget
 features_config = {
     'age': {'type': 'slider', 'min': 29, 'max': 77, 'default': 50, 'step': 1, 'label': 'Age'},
     'sex': {'type': 'radio', 'options': {0: 'Female', 1: 'Male'}, 'default': 1, 'label': 'Sex'},
@@ -301,7 +218,6 @@ features_config = {
     'thal': {'type': 'selectbox', 'options': {0: 'Normal', 1: 'Fixed Defect', 2: 'Reversible Defect'}, 'default': 0, 'label': 'Thalassemia'},
 }
 
-# Display input widgets in the sidebar
 for feature, config in features_config.items():
     label = config.get('label', feature.replace("_", " ").title())
     if config['type'] == 'slider':
@@ -329,24 +245,20 @@ for feature, config in features_config.items():
             index=list(config['options'].keys()).index(config['default'])
         )
 
-# Convert input values to a numpy array for prediction
-final_input_array = np.array([list(input_values.values())])
-
 # --- Prediction and Output ---
+final_input_array = np.array([list(input_values.values())])
 st.markdown("---")
 
-# Prediction button in the main area
 if st.button('Predict Heart Disease Likelihood'):
     with st.spinner('Analyzing data...'):
-        time.sleep(1.5)  # Simulate processing time
+        time.sleep(1.5)
         prediction = model.predict(final_input_array)[0]
 
-    # Display prediction result
     if prediction == 0:
         st.success('✅ Prediction: Low Likelihood of Heart Disease. Keep up the good work!')
     else:
         st.warning('⚠️ Prediction: High Likelihood of Heart Disease. Consider consulting a healthcare professional.')
 
-# Footer
+# --- Footer ---
 st.markdown("---")
 st.markdown("<div style='text-align: center;'>Developed by <b>Dhruv Sharma</b></div>", unsafe_allow_html=True)
