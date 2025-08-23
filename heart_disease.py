@@ -28,14 +28,14 @@ st.markdown(
         font-family: 'Inter', sans-serif;
     }
 
-    /* --- App Layout & Backgrounds (High Contrast) --- */
+    /* --- App Layout & Backgrounds (Restored Gradients) --- */
     .stApp {
-        background-color: #f0f2f6 !important; /* Solid light grey background */
+        background: linear-gradient(135deg, #f0f2f6 0%, #e0e5ec 100%) !important;
     }
 
     /* Main content area styling */
     .main-content {
-        background-color: #ffffff !important; /* Solid white background for max contrast */
+        background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%) !important;
         border-radius: 1.5rem;
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
         padding: 3rem;
@@ -46,19 +46,31 @@ st.markdown(
 
     /* Sidebar styling */
     section[data-testid="stSidebar"] {
-        background: #ffffff !important; /* Solid white sidebar */
+        background: #ffffff !important;
         border-right: 1px solid #e0e0e0;
         box-shadow: 5px 0 15px rgba(0,0,0,0.08);
         padding-top: 2rem;
     }
 
-    /* --- UNIVERSAL TEXT VISIBILITY FIX --- */
-    /* Force all text to be dark and readable */
-    .main-content *, section[data-testid="stSidebar"] * {
-        color: #1f2937 !important; 
+    /* --- TARGETED TEXT VISIBILITY FIXES --- */
+    /* Fix for main content paragraphs and lists */
+    .main-content .stMarkdown p, .main-content .stMarkdown li {
+        color: #333333 !important; 
+    }
+    /* Fix for all text within the sidebar */
+    section[data-testid="stSidebar"] * {
+        color: #1f2937 !important;
+    }
+    /* Fix for dropdown menu items */
+    div[data-baseweb="popover"] ul li {
+        color: #1f2937 !important;
+        background-color: #ffffff !important;
+    }
+    div[data-baseweb="popover"] ul li:hover {
+        background-color: #f0f2f6 !important;
     }
     
-    /* --- Headers --- */
+    /* --- Headers (Restored Colors) --- */
     .main-header {
         font-size: 3.8em;
         color: #D32F2F !important;
@@ -78,13 +90,6 @@ st.markdown(
     }
 
     /* --- Sidebar Widgets --- */
-    div[data-baseweb="popover"] ul li {
-        color: #1f2937 !important;
-        background-color: #ffffff !important;
-    }
-    div[data-baseweb="popover"] ul li:hover {
-        background-color: #f0f2f6 !important;
-    }
     section[data-testid="stSidebar"] .stSlider, 
     section[data-testid="stSidebar"] .stSelectbox, 
     section[data-testid="stSidebar"] .stRadio {
