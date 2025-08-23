@@ -43,8 +43,9 @@ st.markdown(
         margin-bottom: 2rem;
     }
 
-    /* --- FIX FOR MAIN CONTENT TEXT VISIBILITY --- */
-    .main-content .stMarkdown, .main-content p, .main-content li, .main-content strong {
+    /* --- FINAL FIX FOR MAIN CONTENT TEXT VISIBILITY --- */
+    /* This universal selector targets ALL elements inside the main-content div */
+    .main-content * {
         color: #333333 !important; /* A dark grey for readability */
     }
     /* --- END OF MAIN CONTENT FIX --- */
