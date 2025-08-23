@@ -52,25 +52,22 @@ st.markdown(
         padding-top: 2rem;
     }
 
-    /* --- TARGETED TEXT VISIBILITY FIXES --- */
-    /* Fix for main content paragraphs and lists */
-    .main-content .stMarkdown p, .main-content .stMarkdown li {
-        color: #333333 !important; 
+    /* --- ROBUST TEXT VISIBILITY FIXES --- */
+    /* Set a strong default dark color for all text */
+    body, .stApp, .stApp *, [class*="st-emotion-cache"] {
+        color: #212529 !important;
     }
-    /* Fix for all text within the sidebar */
-    section[data-testid="stSidebar"] * {
-        color: #1f2937 !important;
-    }
+    
     /* Fix for dropdown menu items */
     div[data-baseweb="popover"] ul li {
-        color: #1f2937 !important;
+        color: #212529 !important;
         background-color: #ffffff !important;
     }
     div[data-baseweb="popover"] ul li:hover {
         background-color: #f0f2f6 !important;
     }
     
-    /* --- Headers (Restored Colors) --- */
+    /* --- Headers (Override default color with restored colors) --- */
     .main-header {
         font-size: 3.8em;
         color: #D32F2F !important;
