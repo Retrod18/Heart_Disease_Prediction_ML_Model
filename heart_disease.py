@@ -67,6 +67,11 @@ st.markdown(
         background-color: #f0f2f6 !important;
     }
     
+    /* Fix for selected item in selectbox to make it visible */
+    .stSelectbox div[data-baseweb="select"] > div {
+        background-color: #e0e5ec !important;
+    }
+    
     /* --- Headers (Override default color with restored colors) --- */
     .main-header {
         font-size: 3.8em;
@@ -110,6 +115,21 @@ st.markdown(
     .stButton>button:hover {
         background: linear-gradient(45deg, #388E3C 0%, #4CAF50 100%);
         transform: translateY(-4px);
+    }
+    
+    /* --- Custom Divider --- */
+    .custom-divider {
+        text-align: center;
+        margin: 2rem 0;
+    }
+    .custom-divider::before, .custom-divider::after {
+        content: '';
+        display: inline-block;
+        width: 40%;
+        height: 1px;
+        background-color: #d0d0d0;
+        vertical-align: middle;
+        margin: 0 10px;
     }
     </style>
     """,
@@ -249,7 +269,8 @@ for feature, config in features_config.items():
 
 # --- Prediction and Output ---
 final_input_array = np.array([list(input_values.values())])
-st.markdown("---")
+st.markdown("<div class='custom-divider'>❤️</div>", unsafe_allow_html=True)
+
 
 if st.button('Predict Heart Disease Likelihood'):
     with st.spinner('Analyzing data...'):
