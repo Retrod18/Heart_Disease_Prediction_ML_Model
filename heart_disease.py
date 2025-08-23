@@ -213,48 +213,47 @@ if df is not None:
             )
 
 # --- Main App Layout ---
+# The entire main section is now wrapped in a single container with the "main-content" class
+st.markdown('<div class="main-content">', unsafe_allow_html=True)
+
 st.markdown('<p class="main-header">❤️ Heart Disease Prediction</p>', unsafe_allow_html=True)
 st.markdown('<p class="subheader">Leveraging Machine Learning for Proactive Health Insights</p>', unsafe_allow_html=True)
 
-# Main content area - everything is now inside this single container
-with st.container():
-    st.markdown('<div class="main-content">', unsafe_allow_html=True)
-    
-    st.image("https://itdesigners.org/wp-content/uploads/2024/02/heart-1024x576.jpg", 
-             caption="Predicting Heart Health", 
-             use_container_width=True)
-    
-    description = """
-    Heart disease prevention is critical, and data-driven prediction systems can significantly aid in early diagnosis and treatment. Machine Learning offers accurate prediction capabilities, enhancing healthcare outcomes. This project analyzes a heart disease dataset with appropriate preprocessing. Multiple classification algorithms were implemented in Python using Scikit-learn and Keras to predict the presence of heart disease.
+st.image("https://itdesigners.org/wp-content/uploads/2024/02/heart-1024x576.jpg", 
+         caption="Predicting Heart Health", 
+         use_container_width=True)
 
-    **Algorithms Used:**
-    * Logistic Regression
-    * Naive Bayes
-    * Support Vector Machine (Linear)
-    * K-Nearest Neighbors
-    * Decision Tree
-    * Random Forest
-    * XGBoost
-    * Artificial Neural Network (1 Hidden Layer, Keras)
-    """
-    st.write(description)
-    
-    # --- Prediction and Output ---
-    if model is not None and df is not None:
-        final_input_array = np.array([list(input_values.values())])
+description = """
+Heart disease prevention is critical, and data-driven prediction systems can significantly aid in early diagnosis and treatment. Machine Learning offers accurate prediction capabilities, enhancing healthcare outcomes. This project analyzes a heart disease dataset with appropriate preprocessing. Multiple classification algorithms were implemented in Python using Scikit-learn and Keras to predict the presence of heart disease.
 
-        if st.button('Predict Heart Disease Likelihood'):
-            with st.spinner('Analyzing data...'):
-                time.sleep(1.5)
-                prediction = model.predict(final_input_array)[0]
+**Algorithms Used:**
+* Logistic Regression
+* Naive Bayes
+* Support Vector Machine (Linear)
+* K-Nearest Neighbors
+* Decision Tree
+* Random Forest
+* XGBoost
+* Artificial Neural Network (1 Hidden Layer, Keras)
+"""
+st.write(description)
 
-            if prediction == 0:
-                st.success('✅ Prediction: Low Likelihood of Heart Disease. Keep up the good work!')
-            else:
-                st.warning('⚠️ Prediction: High Likelihood of Heart Disease. Consider consulting a healthcare professional.')
+# --- Prediction and Output ---
+if model is not None and df is not None:
+    final_input_array = np.array([list(input_values.values())])
 
-    # --- Footer ---
-    st.markdown("---")
-    st.markdown("<div style='text-align: center;'>Developed by <b>Dhruv Sharma</b></div>", unsafe_allow_html=True)
-    
-    st.markdown('</div>', unsafe_allow_html=True)
+    if st.button('Predict Heart Disease Likelihood'):
+        with st.spinner('Analyzing data...'):
+            time.sleep(1.5)
+            prediction = model.predict(final_input_array)[0]
+
+        if prediction == 0:
+            st.success('✅ Prediction: Low Likelihood of Heart Disease. Keep up the good work!')
+        else:
+            st.warning('⚠️ Prediction: High Likelihood of Heart Disease. Consider consulting a healthcare professional.')
+
+# --- Footer ---
+st.markdown("---")
+st.markdown("<div style='text-align: center;'>Developed by <b>Dhruv Sharma</b></div>", unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
