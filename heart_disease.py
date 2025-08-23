@@ -124,37 +124,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# --- App Layout ---
-with st.container():
-    st.markdown('<p class="main-header">❤️ Heart Disease Prediction</p>', unsafe_allow_html=True)
-    st.markdown('<p class="subheader">Leveraging Machine Learning for Proactive Health Insights</p>', unsafe_allow_html=True)
-
-# Main content area
-with st.container():
-    st.markdown('<div class="main-content">', unsafe_allow_html=True)
-    
-    st.image("https://itdesigners.org/wp-content/uploads/2024/02/heart-1024x576.jpg", 
-             caption="Predicting Heart Health", 
-             use_container_width=True)
-    
-    description = """
-    Heart disease prevention is critical, and data-driven prediction systems can significantly aid in early diagnosis and treatment. Machine Learning offers accurate prediction capabilities, enhancing healthcare outcomes. This project analyzes a heart disease dataset with appropriate preprocessing. Multiple classification algorithms were implemented in Python using Scikit-learn and Keras to predict the presence of heart disease.
-
-    **Algorithms Used:**
-    * Logistic Regression
-    * Naive Bayes
-    * Support Vector Machine (Linear)
-    * K-Nearest Neighbors
-    * Decision Tree
-    * Random Forest
-    * XGBoost
-    * Artificial Neural Network (1 Hidden Layer, Keras)
-    """
-    st.write(description)
-    
-    st.markdown('</div>', unsafe_allow_html=True)
-
-
 # --- Model and Data Loading ---
 @st.cache_resource
 def load_model():
@@ -189,10 +158,6 @@ def load_dataframe():
 model = load_model()
 df = load_dataframe()
 
-if model is None or df is None:
-    st.stop()
-
-
 # --- Sidebar Content ---
 st.sidebar.header('Patient Features')
 st.sidebar.image('https://upload.wikimedia.org/wikipedia/ps/1/13/HeartBeat.gif', caption='Heartbeat Monitor', use_container_width=True)
@@ -211,63 +176,85 @@ st.sidebar.markdown("---")
 
 # --- User Inputs ---
 input_values = {}
+if df is not None:
+    features_config = {
+        'age': {'type': 'slider', 'min': 29, 'max': 77, 'default': 50, 'step': 1, 'label': 'Age'},
+        'sex': {'type': 'radio', 'options': {0: 'Female', 1: 'Male'}, 'default': 1, 'label': 'Sex'},
+        'cp': {'type': 'selectbox', 'options': {0: 'Typical Angina', 1: 'Atypical Angina', 2: 'Non-Anginal Pain', 3: 'Asymptomatic'}, 'default': 0, 'label': 'Chest Pain Type'},
+        'trestbps': {'type': 'slider', 'min': 94, 'max': 200, 'default': 120, 'step': 1, 'label': 'Resting Blood Pressure (trestbps)'},
+        'chol': {'type': 'slider', 'min': 126, 'max': 564, 'default': 240, 'step': 1, 'label': 'Cholesterol (chol)'},
+        'fbs': {'type': 'radio', 'options': {0: 'False (<120 mg/dl)', 1: 'True (>120 mg/dl)'}, 'default': 0, 'label': 'Fasting Blood Sugar > 120 mg/dl'},
+        'restecg': {'type': 'selectbox', 'options': {0: 'Normal', 1: 'ST-T wave abnormality', 2: 'Left ventricular hypertrophy'}, 'default': 0, 'label': 'Resting ECG Results'},
+        'thalach': {'type': 'slider', 'min': 71, 'max': 202, 'default': 150, 'step': 1, 'label': 'Max Heart Rate Achieved (thalach)'},
+        'exang': {'type': 'radio', 'options': {0: 'No', 1: 'Yes'}, 'default': 0, 'label': 'Exercise Induced Angina'},
+        'oldpeak': {'type': 'slider', 'min': 0.0, 'max': 6.2, 'default': 1.0, 'step': 0.1, 'label': 'ST Depression (oldpeak)'},
+        'slope': {'type': 'selectbox', 'options': {0: 'Upsloping', 1: 'Flat', 2: 'Downsloping'}, 'default': 0, 'label': 'Slope of Peak ST Segment'},
+        'ca': {'type': 'slider', 'min': 0, 'max': 4, 'default': 0, 'step': 1, 'label': 'Number of Major Vessels (0-3)'},
+        'thal': {'type': 'selectbox', 'options': {0: 'Normal', 1: 'Fixed Defect', 2: 'Reversible Defect'}, 'default': 0, 'label': 'Thalassemia'},
+    }
 
-features_config = {
-    'age': {'type': 'slider', 'min': 29, 'max': 77, 'default': 50, 'step': 1, 'label': 'Age'},
-    'sex': {'type': 'radio', 'options': {0: 'Female', 1: 'Male'}, 'default': 1, 'label': 'Sex'},
-    'cp': {'type': 'selectbox', 'options': {0: 'Typical Angina', 1: 'Atypical Angina', 2: 'Non-Anginal Pain', 3: 'Asymptomatic'}, 'default': 0, 'label': 'Chest Pain Type'},
-    'trestbps': {'type': 'slider', 'min': 94, 'max': 200, 'default': 120, 'step': 1, 'label': 'Resting Blood Pressure (trestbps)'},
-    'chol': {'type': 'slider', 'min': 126, 'max': 564, 'default': 240, 'step': 1, 'label': 'Cholesterol (chol)'},
-    'fbs': {'type': 'radio', 'options': {0: 'False (<120 mg/dl)', 1: 'True (>120 mg/dl)'}, 'default': 0, 'label': 'Fasting Blood Sugar > 120 mg/dl'},
-    'restecg': {'type': 'selectbox', 'options': {0: 'Normal', 1: 'ST-T wave abnormality', 2: 'Left ventricular hypertrophy'}, 'default': 0, 'label': 'Resting ECG Results'},
-    'thalach': {'type': 'slider', 'min': 71, 'max': 202, 'default': 150, 'step': 1, 'label': 'Max Heart Rate Achieved (thalach)'},
-    'exang': {'type': 'radio', 'options': {0: 'No', 1: 'Yes'}, 'default': 0, 'label': 'Exercise Induced Angina'},
-    'oldpeak': {'type': 'slider', 'min': 0.0, 'max': 6.2, 'default': 1.0, 'step': 0.1, 'label': 'ST Depression (oldpeak)'},
-    'slope': {'type': 'selectbox', 'options': {0: 'Upsloping', 1: 'Flat', 2: 'Downsloping'}, 'default': 0, 'label': 'Slope of Peak ST Segment'},
-    'ca': {'type': 'slider', 'min': 0, 'max': 4, 'default': 0, 'step': 1, 'label': 'Number of Major Vessels (0-3)'},
-    'thal': {'type': 'selectbox', 'options': {0: 'Normal', 1: 'Fixed Defect', 2: 'Reversible Defect'}, 'default': 0, 'label': 'Thalassemia'},
-}
+    for feature, config in features_config.items():
+        label = config.get('label', feature.replace("_", " ").title())
+        if config['type'] == 'slider':
+            min_val = float(df[feature].min())
+            max_val = float(df[feature].max())
+            input_values[feature] = st.sidebar.slider(
+                f'**{label}**', min_val, max_val, float(config['default']), float(config['step'])
+            )
+        elif config['type'] == 'radio':
+            input_values[feature] = st.sidebar.radio(
+                f'**{label}**', list(config['options'].keys()), format_func=lambda x: config['options'][x],
+                index=list(config['options'].keys()).index(config['default'])
+            )
+        elif config['type'] == 'selectbox':
+            input_values[feature] = st.sidebar.selectbox(
+                f'**{label}**', list(config['options'].keys()), format_func=lambda x: config['options'][x],
+                index=list(config['options'].keys()).index(config['default'])
+            )
 
-for feature, config in features_config.items():
-    label = config.get('label', feature.replace("_", " ").title())
-    if config['type'] == 'slider':
-        min_val = float(df[feature].min())
-        max_val = float(df[feature].max())
-        input_values[feature] = st.sidebar.slider(
-            f'**{label}**',
-            min_val,
-            max_val,
-            float(config['default']),
-            float(config['step'])
-        )
-    elif config['type'] == 'radio':
-        input_values[feature] = st.sidebar.radio(
-            f'**{label}**',
-            list(config['options'].keys()),
-            format_func=lambda x: config['options'][x],
-            index=list(config['options'].keys()).index(config['default'])
-        )
-    elif config['type'] == 'selectbox':
-        input_values[feature] = st.sidebar.selectbox(
-            f'**{label}**',
-            list(config['options'].keys()),
-            format_func=lambda x: config['options'][x],
-            index=list(config['options'].keys()).index(config['default'])
-        )
+# --- Main App Layout ---
+st.markdown('<p class="main-header">❤️ Heart Disease Prediction</p>', unsafe_allow_html=True)
+st.markdown('<p class="subheader">Leveraging Machine Learning for Proactive Health Insights</p>', unsafe_allow_html=True)
 
-# --- Prediction and Output ---
-final_input_array = np.array([list(input_values.values())])
+# Main content area - everything is now inside this single container
+with st.container():
+    st.markdown('<div class="main-content">', unsafe_allow_html=True)
+    
+    st.image("https://itdesigners.org/wp-content/uploads/2024/02/heart-1024x576.jpg", 
+             caption="Predicting Heart Health", 
+             use_container_width=True)
+    
+    description = """
+    Heart disease prevention is critical, and data-driven prediction systems can significantly aid in early diagnosis and treatment. Machine Learning offers accurate prediction capabilities, enhancing healthcare outcomes. This project analyzes a heart disease dataset with appropriate preprocessing. Multiple classification algorithms were implemented in Python using Scikit-learn and Keras to predict the presence of heart disease.
 
-if st.button('Predict Heart Disease Likelihood'):
-    with st.spinner('Analyzing data...'):
-        time.sleep(1.5)
-        prediction = model.predict(final_input_array)[0]
+    **Algorithms Used:**
+    * Logistic Regression
+    * Naive Bayes
+    * Support Vector Machine (Linear)
+    * K-Nearest Neighbors
+    * Decision Tree
+    * Random Forest
+    * XGBoost
+    * Artificial Neural Network (1 Hidden Layer, Keras)
+    """
+    st.write(description)
+    
+    # --- Prediction and Output ---
+    if model is not None and df is not None:
+        final_input_array = np.array([list(input_values.values())])
 
-    if prediction == 0:
-        st.success('✅ Prediction: Low Likelihood of Heart Disease. Keep up the good work!')
-    else:
-        st.warning('⚠️ Prediction: High Likelihood of Heart Disease. Consider consulting a healthcare professional.')
+        if st.button('Predict Heart Disease Likelihood'):
+            with st.spinner('Analyzing data...'):
+                time.sleep(1.5)
+                prediction = model.predict(final_input_array)[0]
 
-# --- Footer ---
-st.markdown("---")
-st.markdown("<div style='text-align: center;'>Developed by <b>Dhruv Sharma</b></div>", unsafe_allow_html=True)
+            if prediction == 0:
+                st.success('✅ Prediction: Low Likelihood of Heart Disease. Keep up the good work!')
+            else:
+                st.warning('⚠️ Prediction: High Likelihood of Heart Disease. Consider consulting a healthcare professional.')
+
+    # --- Footer ---
+    st.markdown("---")
+    st.markdown("<div style='text-align: center;'>Developed by <b>Dhruv Sharma</b></div>", unsafe_allow_html=True)
+    
+    st.markdown('</div>', unsafe_allow_html=True)
