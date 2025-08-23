@@ -46,7 +46,7 @@ st.markdown(
     /* --- FINAL FIX FOR MAIN CONTENT TEXT VISIBILITY --- */
     /* This universal selector targets ALL elements inside the main-content div */
     .main-content * {
-        color: #333333 !important; /* A dark grey for readability */
+        color: #1a1a1a !important; /* A very dark grey for maximum readability */
     }
     /* --- END OF MAIN CONTENT FIX --- */
 
@@ -54,7 +54,7 @@ st.markdown(
     /* Main header styling */
     .main-header {
         font-size: 3.8em;
-        color: #D32F2F;
+        color: #D32F2F !important;
         text-align: center;
         font-weight: 800;
         margin-bottom: 0.2em;
@@ -65,7 +65,7 @@ st.markdown(
     /* Subheader styling */
     .subheader {
         font-size: 1.6em;
-        color: #4A55A2;
+        color: #4A55A2 !important;
         text-align: center;
         margin-bottom: 2.5em;
         font-weight: 600;
@@ -149,7 +149,7 @@ st.markdown(
     /* Styling for the prediction button */
     .stButton>button {
         background: linear-gradient(45deg, #4CAF50 0%, #66BB6A 100%);
-        color: white;
+        color: #FFFFFF !important; /* Force pure white text for high contrast */
         font-weight: bold;
         padding: 1em 2em;
         border-radius: 1rem;
