@@ -43,6 +43,13 @@ st.markdown(
         margin-bottom: 2rem;
     }
 
+    /* --- FIX FOR MAIN CONTENT TEXT VISIBILITY --- */
+    .main-content .stMarkdown, .main-content p, .main-content li, .main-content strong {
+        color: #333333 !important; /* A dark grey for readability */
+    }
+    /* --- END OF MAIN CONTENT FIX --- */
+
+
     /* Main header styling */
     .main-header {
         font-size: 3.8em;
@@ -63,7 +70,7 @@ st.markdown(
         font-weight: 600;
     }
 
-    /* --- Sidebar Styling (Corrected Again) --- */
+    /* --- Sidebar Styling --- */
     section[data-testid="stSidebar"] {
         background: #ffffff !important;
         border-right: 1px solid #e0e0e0;
