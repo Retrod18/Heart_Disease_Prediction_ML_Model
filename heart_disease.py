@@ -63,7 +63,7 @@ st.markdown(
         font-weight: 600;
     }
 
-    /* --- Sidebar Styling (Corrected) --- */
+    /* --- Sidebar Styling (Corrected Again) --- */
     section[data-testid="stSidebar"] {
         background: #ffffff !important;
         border-right: 1px solid #e0e0e0;
@@ -72,19 +72,30 @@ st.markdown(
     }
 
     /* Universal rule to make ALL text inside the sidebar dark and readable */
-    section[data-testid="stSidebar"] *, section[data-testid="stSidebar"] div, section[data-testid="stSidebar"] label, section[data-testid="stSidebar"] p {
+    section[data-testid="stSidebar"] * {
         color: #1a1a1a !important;
     }
     
-    /* This is the key fix: Targets the dropdown menu (popover) that appears when a selectbox is clicked */
-    div[data-baseweb="popover"] ul li {
-        color: #1a1a1a !important; /* Ensures text in dropdown is dark */
-        background-color: #ffffff !important; /* Ensures background is light */
+    /* --- DEFINITIVE FIX FOR DROPDOWN VISIBILITY --- */
+    /* Target the entire popover container for selectboxes */
+    div[data-baseweb="popover"] {
+        background-color: #ffffff !important; /* Force a light background on the dropdown box */
+        border: 1px solid #d0d0d0 !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
     }
+
+    /* Target the list items within the popover */
+    div[data-baseweb="popover"] ul li {
+        color: #1a1a1a !important; /* Ensure text in dropdown is dark */
+        background-color: #ffffff !important; /* Ensure each item has a light background */
+    }
+
     /* Style for hovering over dropdown options */
     div[data-baseweb="popover"] ul li:hover {
-        background-color: #f0f2f6 !important;
+        background-color: #f0f2f6 !important; /* Light grey hover effect */
     }
+    /* --- END OF DROPDOWN FIX --- */
+
 
     /* Sidebar header styling */
     section[data-testid="stSidebar"] h2 {
