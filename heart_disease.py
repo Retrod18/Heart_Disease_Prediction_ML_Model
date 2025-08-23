@@ -21,53 +21,70 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display.swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
     /* --- Base Styles --- */
     html, body, [class*="st-emotion-cache"] {
         font-family: 'Inter', sans-serif;
     }
 
-    /* --- App Layout & Backgrounds (Simplified) --- */
+    /* --- App Layout & Backgrounds --- */
     .stApp {
-        background-color: #f0f2f6 !important;
+        background: linear-gradient(135deg, #f0f2f6 0%, #e0e5ec 100%) !important;
     }
 
     /* Main content area styling */
     .main-content {
-        background-color: #ffffff !important;
-        border-radius: 1rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        padding: 2rem;
+        background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%) !important;
+        border-radius: 1.5rem;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        padding: 3rem;
         border: 1px solid #e0eaf6;
         margin-top: 2rem;
+        margin-bottom: 2rem;
     }
 
     /* Sidebar styling */
     section[data-testid="stSidebar"] {
         background: #ffffff !important;
         border-right: 1px solid #e0e0e0;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.08);
+        padding-top: 2rem;
     }
 
-    /* --- UNIVERSAL TEXT VISIBILITY FIX --- */
-    /* Force all text to be dark and readable */
-    body, .stApp, .stMarkdown, p, li, div, label, h2, h1, span {
-        color: #111827 !important;
+    /* --- ROBUST TEXT VISIBILITY FIXES --- */
+    /* Set a strong default dark color for all text */
+    body, .stApp, .stApp *, [class*="st-emotion-cache"] {
+        color: #212529 !important;
     }
     
-    /* --- Headers (Specific Colors) --- */
+    /* Fix for dropdown menu items */
+    div[data-baseweb="popover"] ul li {
+        color: #212529 !important;
+        background-color: #ffffff !important;
+    }
+    div[data-baseweb="popover"] ul li:hover {
+        background-color: #f0f2f6 !important;
+    }
+    
+    /* Fix for selected item in selectbox to make it visible */
+    .stSelectbox div[data-baseweb="select"] > div {
+        background-color: #e9ecef !important; /* Light grey background for selected item */
+        color: #212529 !important;
+    }
+    
+    /* --- Headers (Restored Colors) --- */
     .main-header {
-        font-size: 3.5em;
+        font-size: 3.8em;
         color: #D32F2F !important;
         text-align: center;
         font-weight: 800;
     }
     .subheader {
-        font-size: 1.5em;
+        font-size: 1.6em;
         color: #4A55A2 !important;
         text-align: center;
         font-weight: 600;
-        margin-bottom: 2rem;
     }
     section[data-testid="stSidebar"] h2 {
         color: #0D47A1 !important;
@@ -76,37 +93,30 @@ st.markdown(
     }
 
     /* --- Sidebar Widgets --- */
-    .stSelectbox div[data-baseweb="select"] > div {
-        background-color: #f0f2f6 !important;
-    }
-    div[data-baseweb="popover"] ul li {
-        color: #111827 !important;
-        background-color: #ffffff !important;
-    }
-    div[data-baseweb="popover"] ul li:hover {
-        background-color: #f0f2f6 !important;
+    section[data-testid="stSidebar"] .stSlider, 
+    section[data-testid="stSidebar"] .stSelectbox, 
+    section[data-testid="stSidebar"] .stRadio {
+        background-color: #f0f0f0 !important;
+        border-radius: 0.8rem;
+        padding: 0.7em;
+        border: 1px solid #d0d0d0 !important;
     }
 
     /* --- Prediction Button --- */
     .stButton>button {
-        background-color: #4CAF50 !important;
-        color: #FFFFFF !important;
+        background: linear-gradient(45deg, #4CAF50 0%, #66BB6A 100%);
+        color: #FFFFFF !important; /* Force pure white text */
         font-weight: bold;
         padding: 1em 2em;
         border-radius: 1rem;
         border: none;
+        box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
         font-size: 1.2em;
+        margin-top: 2rem; /* Adds space above the button, removing need for a divider */
     }
     .stButton>button:hover {
-        background-color: #388E3C !important;
-    }
-    
-    /* --- Custom Divider --- */
-    .custom-divider {
-        text-align: center;
-        margin: 2rem 0;
-        color: #D32F2F !important;
-        font-size: 1.5rem;
+        background: linear-gradient(45deg, #388E3C 0%, #4CAF50 100%);
+        transform: translateY(-4px);
     }
     </style>
     """,
@@ -246,8 +256,6 @@ for feature, config in features_config.items():
 
 # --- Prediction and Output ---
 final_input_array = np.array([list(input_values.values())])
-st.markdown("<div class='custom-divider'>❤️</div>", unsafe_allow_html=True)
-
 
 if st.button('Predict Heart Disease Likelihood'):
     with st.spinner('Analyzing data...'):
