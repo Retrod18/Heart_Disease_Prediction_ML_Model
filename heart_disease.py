@@ -204,8 +204,9 @@ with st.container():
     st.image("https://itdesigners.org/wp-content/uploads/2024/02/heart-1024x576.jpg", 
              caption="Predicting Heart Health", 
              use_container_width=True)
-
-    st.write("""
+    
+    # Assigning the long description to a variable to prevent TokenError
+    description = """
     Heart disease prevention is critical, and data-driven prediction systems can significantly aid in early diagnosis and treatment. Machine Learning offers accurate prediction capabilities, enhancing healthcare outcomes. This project analyzes a heart disease dataset with appropriate preprocessing. Multiple classification algorithms were implemented in Python using Scikit-learn and Keras to predict the presence of heart disease.
 
     **Algorithms Used:**
@@ -217,7 +218,8 @@ with st.container():
     * Random Forest
     * XGBoost
     * Artificial Neural Network (1 Hidden Layer, Keras)
-    """)
+    """
+    st.write(description)
     
     st.markdown('</div>', unsafe_allow_html=True)
 
