@@ -8,7 +8,7 @@ import time
 # Set page configuration for a wider layout and custom title
 st.set_page_config(
     layout="wide",
-    page_title="Heart Health Predictor �",
+    page_title="Heart Health Predictor 💖",
     initial_sidebar_state="expanded",
     menu_items={
         'Get help': 'https://www.streamlit.io/help',
@@ -271,4 +271,3 @@ if st.button('Predict Heart Disease Likelihood'):
 # --- Footer ---
 st.markdown("---")
 st.markdown("<div style='text-align: center;'>Developed by <b>Dhruv Sharma</b></div>", unsafe_allow_html=True)
-�
