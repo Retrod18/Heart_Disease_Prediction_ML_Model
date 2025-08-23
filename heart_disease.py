@@ -21,69 +21,53 @@ st.set_page_config(
 st.markdown(
     """
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display.swap');
 
     /* --- Base Styles --- */
     html, body, [class*="st-emotion-cache"] {
         font-family: 'Inter', sans-serif;
     }
 
-    /* --- App Layout & Backgrounds (Restored Gradients) --- */
+    /* --- App Layout & Backgrounds (Simplified) --- */
     .stApp {
-        background: linear-gradient(135deg, #f0f2f6 0%, #e0e5ec 100%) !important;
+        background-color: #f0f2f6 !important;
     }
 
     /* Main content area styling */
     .main-content {
-        background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%) !important;
-        border-radius: 1.5rem;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-        padding: 3rem;
+        background-color: #ffffff !important;
+        border-radius: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
         border: 1px solid #e0eaf6;
         margin-top: 2rem;
-        margin-bottom: 2rem;
     }
 
     /* Sidebar styling */
     section[data-testid="stSidebar"] {
         background: #ffffff !important;
         border-right: 1px solid #e0e0e0;
-        box-shadow: 5px 0 15px rgba(0,0,0,0.08);
-        padding-top: 2rem;
     }
 
-    /* --- ROBUST TEXT VISIBILITY FIXES --- */
-    /* Set a strong default dark color for all text */
-    body, .stApp, .stApp *, [class*="st-emotion-cache"] {
-        color: #212529 !important;
+    /* --- UNIVERSAL TEXT VISIBILITY FIX --- */
+    /* Force all text to be dark and readable */
+    body, .stApp, .stMarkdown, p, li, div, label, h2, h1, span {
+        color: #111827 !important;
     }
     
-    /* Fix for dropdown menu items */
-    div[data-baseweb="popover"] ul li {
-        color: #212529 !important;
-        background-color: #ffffff !important;
-    }
-    div[data-baseweb="popover"] ul li:hover {
-        background-color: #f0f2f6 !important;
-    }
-    
-    /* Fix for selected item in selectbox to make it visible */
-    .stSelectbox div[data-baseweb="select"] > div {
-        background-color: #e0e5ec !important;
-    }
-    
-    /* --- Headers (Override default color with restored colors) --- */
+    /* --- Headers (Specific Colors) --- */
     .main-header {
-        font-size: 3.8em;
+        font-size: 3.5em;
         color: #D32F2F !important;
         text-align: center;
         font-weight: 800;
     }
     .subheader {
-        font-size: 1.6em;
+        font-size: 1.5em;
         color: #4A55A2 !important;
         text-align: center;
         font-weight: 600;
+        margin-bottom: 2rem;
     }
     section[data-testid="stSidebar"] h2 {
         color: #0D47A1 !important;
@@ -92,44 +76,37 @@ st.markdown(
     }
 
     /* --- Sidebar Widgets --- */
-    section[data-testid="stSidebar"] .stSlider, 
-    section[data-testid="stSidebar"] .stSelectbox, 
-    section[data-testid="stSidebar"] .stRadio {
-        background-color: #f0f0f0 !important;
-        border-radius: 0.8rem;
-        padding: 0.7em;
-        border: 1px solid #d0d0d0 !important;
+    .stSelectbox div[data-baseweb="select"] > div {
+        background-color: #f0f2f6 !important;
+    }
+    div[data-baseweb="popover"] ul li {
+        color: #111827 !important;
+        background-color: #ffffff !important;
+    }
+    div[data-baseweb="popover"] ul li:hover {
+        background-color: #f0f2f6 !important;
     }
 
     /* --- Prediction Button --- */
     .stButton>button {
-        background: linear-gradient(45deg, #4CAF50 0%, #66BB6A 100%);
-        color: #FFFFFF !important; /* Force pure white text */
+        background-color: #4CAF50 !important;
+        color: #FFFFFF !important;
         font-weight: bold;
         padding: 1em 2em;
         border-radius: 1rem;
         border: none;
-        box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
         font-size: 1.2em;
     }
     .stButton>button:hover {
-        background: linear-gradient(45deg, #388E3C 0%, #4CAF50 100%);
-        transform: translateY(-4px);
+        background-color: #388E3C !important;
     }
     
     /* --- Custom Divider --- */
     .custom-divider {
         text-align: center;
         margin: 2rem 0;
-    }
-    .custom-divider::before, .custom-divider::after {
-        content: '';
-        display: inline-block;
-        width: 40%;
-        height: 1px;
-        background-color: #d0d0d0;
-        vertical-align: middle;
-        margin: 0 10px;
+        color: #D32F2F !important;
+        font-size: 1.5rem;
     }
     </style>
     """,
