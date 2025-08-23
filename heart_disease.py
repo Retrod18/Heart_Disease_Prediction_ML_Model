@@ -68,86 +68,96 @@ st.markdown(
     /* --- Sidebar Styling --- */
     /* Target the main sidebar container */
     section[data-testid="stSidebar"] {
-        background: #ffffff !important; /* Pure white background for sidebar */
-        border-right: 1px solid #e0e0e0; /* Light grey border */
-        box-shadow: 5px 0 15px rgba(0,0,0,0.08); /* Soft shadow to differentiate */
+        background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%) !important; /* Dark blue/grey gradient */
+        border-right: 2px solid #1a252f; /* Darker border */
+        box-shadow: 5px 0 20px rgba(0,0,0,0.2); /* More prominent shadow */
         padding-top: 2rem;
-        color: #1a1a1a !important; /* Ensure all text within sidebar is dark */
     }
     /* Target the sidebar content wrapper for all text and elements */
     .st-emotion-cache-10o4u2p, .st-emotion-cache-10o4u2p * { /* Select all children too */
-        color: #1a1a1a !important; /* Dark text color for all sidebar content */
+        color: #ecf0f1 !important; /* Light text color for all sidebar content */
         background-color: transparent !important; /* Ensure no conflicting backgrounds */
     }
 
     /* Sidebar header styling */
     .st-emotion-cache-1c7y2kd { /* Targets h2 in sidebar */
-        color: #0D47A1 !important; /* Darker blue for sidebar header */
+        color: #1abc9c !important; /* Bright teal for sidebar header */
         font-size: 2em; /* Larger sidebar header */
         font-weight: 700;
         margin-bottom: 1.5em;
         text-align: center;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        text-shadow: 1px 1px 3px rgba(0,255,255,0.2);
     }
 
     /* Sidebar image container */
     .st-emotion-cache-1r6y40z { /* Targets image container in sidebar */
         border-radius: 1.2rem; /* Rounded corners */
         overflow: hidden;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.18); /* Soft shadow */
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* Darker shadow for image */
         margin-bottom: 2.5em;
-        border: 2px solid #CFD8DC; /* Light grey border */
+        border: 2px solid #5a7d9a; /* Complementary border */
     }
 
     /* Sidebar expander styling */
     .st-emotion-cache-p5m6cs { /* Targets expander container */
-        background-color: #f8f8f8 !important; /* Slightly off-white for expanders */
+        background-color: #3f546a !important; /* Slightly lighter dark background */
         border-radius: 0.8rem;
-        border: 1px solid #e0e0e0 !important;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        border: 1px solid #4a6078 !important;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         margin-bottom: 1em;
         padding: 0.5em 1em;
     }
     .st-emotion-cache-p5m6cs p { /* Text inside expander */
-        color: #1a1a1a !important; /* Ensure expander text is dark */
+        color: #ecf0f1 !important; /* Ensure expander text is light */
         font-weight: 500;
     }
     .st-emotion-cache-p5m6cs div[data-testid="stExpanderToggleIcon"] { /* Expander arrow icon */
-        color: #0D47A1 !important; /* Ensure expander icon is dark blue */
+        color: #1abc9c !important; /* Ensure expander icon is bright */
     }
     .st-emotion-cache-p5m6cs div[data-testid="stExpanderDetails"] { /* Content inside expander details */
-        color: #1a1a1a !important; /* Ensure expander details text is dark */
+        color: #ecf0f1 !important; /* Ensure expander details text is light */
     }
     .st-emotion-cache-p5m6cs button { /* Expander header button */
-        color: #1a1a1a !important; /* Ensure expander button text is dark */
+        color: #ecf0f1 !important; /* Ensure expander button text is light */
         font-weight: 600;
         font-size: 1.1em;
     }
 
     /* Styling for sidebar input labels */
     .st-emotion-cache-vk330f label {
-        color: #1a1a1a !important; /* Force dark color for labels */
-        margin-bottom: 0.2em; /* Reduce space below label */
-        padding-top: 1em; /* Add padding above label for spacing */
+        color: #ecf0f1 !important; /* Force light color for labels */
     }
     /* Styling for sidebar input elements (sliders, selectboxes, radio buttons) */
     .st-emotion-cache-1kyx5e9, .st-emotion-cache-1v0mbdj, .st-emotion-cache-1q1n004 {
-        background-color: #f0f0f0 !important; /* Light grey background for inputs */
+        background-color: #4a6078 !important; /* Darker background for inputs */
         border-radius: 0.8rem;
         padding: 0.7em;
-        border: 1px solid #d0d0d0 !important;
-        box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Inner shadow for depth */
-        color: #1a1a1a !important; /* Ensure input text is dark */
-        margin-bottom: 1em; /* Add space below input field */
+        border: 1px solid #5a7d9a !important;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Inner shadow for depth */
+        color: #ecf0f1 !important; /* Ensure input text is light */
     }
     /* For slider numbers */
     .st-emotion-cache-1q1n004 div[data-testid="stSlider"] div[data-baseweb="slider"] div[data-testid="stTickBar"] div {
-        color: #1a1a1a !important; /* Make slider tick numbers visible */
+        color: #ecf0f1 !important; /* Make slider tick numbers visible */
     }
     .st-emotion-cache-1q1n004 div[data-testid="stSlider"] div[data-baseweb="slider"] div[data-testid="stTickBar"] div[data-testid="stTickBarValue"] {
-        color: #1a1a1a !important; /* Make slider value numbers visible */
+        color: #ecf0f1 !important; /* Make slider value numbers visible */
     }
 
+    /* --- Radio Button Icon Specific Styling --- */
+    /* This targets the actual radio button circle */
+    .st-emotion-cache-10o4u2p .st-emotion-cache-1v0mbdj > label > div:first-child {
+        border-color: #1abc9c !important; /* Bright border for the radio button circle */
+        background-color: transparent !important; /* Ensure background is transparent */
+    }
+    /* This targets the inner dot of the selected radio button */
+    .st-emotion-cache-10o4u2p .st-emotion-cache-1v0mbdj > label > div:first-child > div {
+        background-color: #1abc9c !important; /* Bright color for the selected dot */
+    }
+    /* This targets the text next to the radio button */
+    .st-emotion-cache-10o4u2p .st-emotion-cache-1v0mbdj > label > div:last-child {
+        color: #ecf0f1 !important; /* Ensure the radio button text is light */
+    }
 
     /* --- End Sidebar Styling --- */
 
